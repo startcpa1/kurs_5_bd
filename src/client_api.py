@@ -1,5 +1,3 @@
-"""Получить данные о работодателях и их вакансиях с сайта hh.ru. Для этого используйте публичный API hh.ru и библиотеку
-requests"""
 import json
 
 import requests
@@ -17,17 +15,15 @@ class HeadHunterApi:
     def get_vacancies(self):
         """Отправляем запрос на API для получения вакансий в JSON"""
         response = requests.get(self.url, headers=self.header, params=self.params)
-        print(response)
         if response.status_code == 200:
             return response.json()['items']
         else:
             print('Ошибка', response.status_code, 'в получении данных c сайта HeadHunter')
 
-    def save_to_json(self, data, file_to_save):
+    def save_to_json(self, data) -> None:
         """Получает список вакансий с указанием названия компании, названия вакансии, зарплаты, ссылки на вакансию"""
 
-        self.file_to_save = file_to_save
-        with open(file_to_save, 'w', encoding='utf-8') as file:
+        with open(self.file_to_save, 'w', encoding='utf-8') as file:
             data_list = []
             for dict_ in data:
                 temp_dict = {'company_id': dict_['employer']['id'], 'name': dict_['name'],

@@ -26,8 +26,8 @@ class HeadHunterApi:
         with open(self.file_to_save, 'w', encoding='utf-8') as file:
             data_list = []
             for dict_ in data:
-                temp_dict = {'company_id': dict_['employer']['id'], 'name': dict_['name'],
-                             'area': dict_['area']['name'],
+                temp_dict = {'company_id': dict_['employer']['id'], 'company': dict_['employer']['name'],
+                             'employee': dict_['name'], 'city': dict_['area']['name'],
                              'salary': dict_.get('salary'), 'url': dict_['alternate_url'],
                              'requirement': dict_['snippet']['requirement']}
                 data_list.append(temp_dict)

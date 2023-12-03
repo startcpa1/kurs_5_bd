@@ -17,6 +17,7 @@ class HeadHunterApi:
     def get_vacancies(self):
         """Отправляем запрос на API для получения вакансий в JSON"""
         response = requests.get(self.url, headers=self.header, params=self.params)
+        print(response)
         if response.status_code == 200:
             return response.json()['items']
         else:
